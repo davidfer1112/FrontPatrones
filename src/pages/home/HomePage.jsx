@@ -1,14 +1,14 @@
-import calendar from './assets/calendar.svg'
-import evento from './assets/evento.svg'
-import fiesta from './assets/fiesta.svg'
-import HeaderComponenet from './components/header/headerComponent'
-import FooterComponent from './components/footer/footerComponent'
-import './App.css'
 
-function App() {
+import FooterComponent from "../../components/footer/footerComponent";
+import HeaderComponenet from "../../components/header/headerComponent";
+import calendar from "../../assets/calendar.svg";
+import evento from "../../assets/evento.svg";
+import fiesta from "../../assets/fiesta.svg";
 
+
+function HomePage() {
   return (
-    <>
+    <div>
       
       <HeaderComponenet />
 
@@ -71,9 +71,6 @@ function App() {
       </main>
 
       <FooterComponent />
-      
-    </>
-  )
+    </div>
+  );
 }
-
-export default App
