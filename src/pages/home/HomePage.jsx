@@ -1,16 +1,18 @@
 
 import FooterComponent from "../../components/footer/footerComponent";
-import HeaderComponenet from "../../components/header/headerComponent";
+import HeaderComponent from "../../components/header/headerComponent"
 import calendar from "../../assets/calendar.svg";
 import evento from "../../assets/evento.svg";
 import fiesta from "../../assets/fiesta.svg";
+import "./HomePage.css";
 
 
 function HomePage() {
   return (
     <div>
-      
-      <HeaderComponenet />
+
+      <HeaderComponent />
+
 
       <main>
         <section className="hero-section">
@@ -74,3 +76,5 @@ function HomePage() {
     </div>
   );
 }
+
+export default HomePage;

@@ -1,77 +1,75 @@
-import { useState } from 'react'
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import Link from 'next/link'
-import './loginPage.css'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import './loginPage.css';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [userType, setUserType] = useState('cliente');
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    
-    console.log('Iniciando sesión con:', email, password)
-  }
+    e.preventDefault();
+    console.log('Iniciando sesión con:', email, password, userType);
+  };
 
   return (
     <div className="login-container">
-      <Card className="login-card">
-        <CardHeader>
-          <CardTitle className="login-title">Iniciar Sesión</CardTitle>
-          <CardDescription className="login-description">
-            Ingresa tus credenciales para acceder a tu cuenta
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="login-form">
-            <div className="input-group">
-              <Label htmlFor="email">Correo Electrónico</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="tu@ejemplo.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
+      <div className="login-card">
+        <h2 className="login-title">Iniciar Sesión</h2>
+        <form onSubmit={handleSubmit} className="login-form">
+          <div className="input-group">
+            <label htmlFor="email">Correo Electrónico</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="tu@ejemplo.com"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <label htmlFor="password">Contraseña</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+              required
+            />
+          </div>
+          <div className="input-group user-type">
+            <label>
+              <input
+                type="radio"
+                name="userType"
+                value="host"
+                checked={userType === 'host'}
+                onChange={() => setUserType('host')}
               />
-            </div>
-            <div className="input-group">
-              <Label htmlFor="password">Contraseña</Label>
-              <Input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
+              Host
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="userType"
+                value="cliente"
+                checked={userType === 'cliente'}
+                onChange={() => setUserType('cliente')}
               />
-            </div>
-            <div className="login-options">
-              <div className="remember-me">
-                <Checkbox id="remember" />
-                <Label htmlFor="remember">Recordarme</Label>
-              </div>
-              <Link href="/forgot-password" className="forgot-password-link">
-                ¿Olvidaste tu contraseña?
-              </Link>
-            </div>
-            <Button type="submit" className="login-button">
-              Iniciar Sesión
-            </Button>
-          </form>
-        </CardContent>
-        <CardFooter className="login-footer">
-          <p className="register-prompt">
-            ¿No tienes una cuenta?{' '}
-            <Link href="/register" className="register-link">
-              Regístrate
-            </Link>
-          </p>
-        </CardFooter>
-      </Card>
+              Cliente
+            </label>
+          </div>
+          <div className="input-group">
+            <button type="submit" className="login-button">Iniciar Sesión</button>
+          </div>
+          <div className="register-link-container">
+            {/* Asegúrate de que el enlace apunte a la ruta absoluta */}
+            <p>¿No tienes una cuenta? <Link to="/registrarse" className="register-link">Regístrate aquí</Link></p>
+          </div>
+        </form>
+      </div>
     </div>
-  )
+  );
 }
