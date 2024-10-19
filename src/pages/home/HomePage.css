@@ -278,3 +278,8 @@
     margin-top: 16px;
   }
   
+
+  .Link-evento{
+    text-decoration: none;
+    color: black;
+}
