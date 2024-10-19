@@ -1,23 +1,17 @@
-.events-section {
+.event-list-container {
     padding: 20px;
     background-color: #f9f9f9;
     max-height: 600px;  /* Limitar la altura de la sección */
     overflow-y: auto;  /* Habilitar scroll vertical */
-  }
+}
   
-  .section-title {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .events-grid {
+.event-list-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);  
     gap: 20px;
-  }
+}
   
-  .event-card {
+.event-item {
     background-color: white;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -28,65 +22,36 @@
     justify-content: space-between;
     max-width: 100%;
     height: 200px;
-  }
+}
   
-  .card-content {
-    display: flex;
-    align-items: center;
-  }
-  
-  .card-image {
+.event-item-image {
     max-width: 150px;
     height: auto;
     margin-right: 20px;
-  }
+}
   
-  .card-info {
-    text-align: left;
-  }
-  
-  .card-title {
+.event-item-title {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
-  }
+}
   
-  .card-date, .card-location {
+.event-item-date, .event-item-location {
     font-size: 14px;
     color: #555;
     margin-bottom: 5px;
-  }
+}
   
-  .button-container {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .primary-button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .primary-button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Estilos para personalizar el scrollbar */
-  .events-section::-webkit-scrollbar {
+/* Estilos para personalizar el scrollbar */
+.event-list-container::-webkit-scrollbar {
     width: 8px;
-  }
+}
   
-  .events-section::-webkit-scrollbar-thumb {
+.event-list-container::-webkit-scrollbar-thumb {
     background-color: #007bff;
     border-radius: 10px;
-  }
+}
   
-  .events-section::-webkit-scrollbar-track {
+.event-list-container::-webkit-scrollbar-track {
     background-color: #f9f9f9;
-  }
-  
+}

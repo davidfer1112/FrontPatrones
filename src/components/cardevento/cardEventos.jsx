@@ -25,21 +25,19 @@ function CardEventos() {
   }, []);
 
   return (
-    <section className="events-section">
-      
-      <div className="events-grid">
+    <section className="event-list-container">
+      <div className="event-list-grid">
         {events.map((event, index) => (
-          <div className="event-card" key={event.id_event}>
-            <h3 className="card-title">{event.name}</h3>
+          <div className="event-item" key={event.id_event}>
+            <h3 className="event-item-title">{event.name}</h3>
             <img
               src={images[index % images.length]}  
               alt={`Evento ${event.name}`}
-              className="card-image"
+              className="event-item-image"
             />
-            <p className="card-date"><strong>Fecha:</strong> {new Date(event.date).toLocaleDateString()}</p>
-            <p className="card-location"><strong>Ubicación:</strong> {event.location}</p>
+            <p className="event-item-date"><strong>Fecha:</strong> {new Date(event.date).toLocaleDateString()}</p>
+            <p className="event-item-location"><strong>Ubicación:</strong> {event.location}</p>
             <p><strong>Precio:</strong> ${event.price}</p>
-           
           </div>
         ))}
       </div>
