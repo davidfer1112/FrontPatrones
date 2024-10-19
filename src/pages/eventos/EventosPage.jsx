@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import FooterComponent from '../../components/footer/footerComponent';
 import HeaderComponent from '../../components/header/headerComponent';
 import CardEventos from '../../components/cardevento/cardEventos';
+import CardAlojamiento from '../../components/cardalojamiento/cardAlojamiento';
 import './EventosPage.css';
 
 function EventosPage() {
@@ -39,8 +40,7 @@ function EventosPage() {
           ) : (
             <section>
               <h2>Alojamientos</h2>
-              {/* Aquí iría el contenido de los alojamientos */}
-              <p>Aquí se mostrarán los alojamientos disponibles.</p>
+              <CardAlojamiento />
             </section>
           )}
         </main>
