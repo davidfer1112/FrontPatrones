@@ -16,12 +16,12 @@ function HeaderComponent() {
             </button>
           </div>
           <nav className="nav">
-            <button className='btn'>
+            {/* <button className='btn'>
               <Link className="nav-link" to="/eventos">Eventos</Link>
             </button>
             <button className='btn'>
               <Link className="nav-link" to="/alojamientos">Alojamientos</Link>
-            </button>
+            </button> */}
             <button className='btn'>
               <Link className="nav-link" to="/iniciar-sesion">Iniciar Sesión</Link>
             </button>
