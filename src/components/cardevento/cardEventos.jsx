@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getAllEvents } from '../../services/eventService';
+import { Link } from 'react-router-dom';  
 import fiesta from '../../assets/fiesta.svg';
 import fiesta2 from '../../assets/fiesta2.svg';
 import fiesta3 from '../../assets/fiesta3.svg';
@@ -35,9 +36,18 @@ function CardEventos() {
               alt={`Evento ${event.name}`}
               className="event-item-image"
             />
-            <p className="event-item-date"><strong>Fecha:</strong> {new Date(event.date).toLocaleDateString()}</p>
-            <p className="event-item-location"><strong>Ubicación:</strong> {event.location}</p>
-            <p><strong>Precio:</strong> ${event.price}</p>
+            <div className="event-item-details">
+              <p className="event-item-date"><strong>Fecha:</strong> {new Date(event.date).toLocaleDateString()}</p>
+              <p className="event-item-location"><strong>Ubicación:</strong> {event.location}</p>
+              <p><strong>Precio:</strong> ${event.price}</p>
+            </div>
+            {/* Botón para ver los detalles del evento */}
+            <Link
+              to={`/eventos/${event.id_event}?image=${encodeURIComponent(images[index % images.length])}`}
+              className="event-item-link"
+            >
+              Ver detalles
+            </Link>
           </div>
         ))}
       </div>

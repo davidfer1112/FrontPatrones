@@ -35,6 +35,13 @@ function CardComponent() {
             <img src={images[index]} alt={`Evento ${event.name}`} className="card-image" />
             <p className="card-date">Fecha: {new Date(event.date).toLocaleDateString()}</p>
             <p className="card-location">Ubicación: {event.location}</p>
+            {/* Ahora incluimos la imagen como un parámetro en la URL */}
+            <Link 
+              to={`/eventos/${event.id_event}?image=${encodeURIComponent(images[index])}`}
+              className="event-link"
+            >
+              Ver detalles
+            </Link>
           </div>
         ))}
       </div>
