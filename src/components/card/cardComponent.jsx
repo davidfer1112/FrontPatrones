@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { getAllEvents } from '../../services/eventService';
+import { getAllEvents } from '../../services/eventService.js';
 import { Link } from 'react-router-dom';
-import fiesta from '../../assets/fiesta.svg';
-import fiesta2 from '../../assets/fiesta2.svg';
-import fiesta3 from '../../assets/fiesta3.svg';
 import './CardComponent.css';
 
 function CardComponent() {
   const [events, setEvents] = useState([]);
-
-  const images = [fiesta, fiesta2, fiesta3]; // Arreglo de imágenes
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -29,15 +24,19 @@ function CardComponent() {
     <section className="events-section">
       <h2 className="section-title text-center">Próximos eventos y alojamientos</h2>
       <div className="events-grid">
-        {events.map((event, index) => (
-          <div className="event-card" key={event.id_event}>
+        {events.map((event) => (
+          <div className="event-card" key={event.event_id}>
             <h3 className="card-title">{event.name}</h3>
-            <img src={images[index]} alt={`Evento ${event.name}`} className="card-image" />
-            <p className="card-date">Fecha: {new Date(event.date).toLocaleDateString()}</p>
+            <img 
+              src={event.image_url} 
+              alt={`Evento ${event.name}`} 
+              className="card-image" 
+              onError={(e) => { e.target.src = '/fallback-image.jpg'; }} // Imagen de respaldo si `image_url` falla
+            />
+            <p className="card-date">Fecha: {new Date(event.date_time).toLocaleDateString()}</p>
             <p className="card-location">Ubicación: {event.location}</p>
-            {/* Ahora incluimos la imagen como un parámetro en la URL */}
             <Link 
-              to={`/eventos/${event.id_event}?image=${encodeURIComponent(images[index])}`}
+              to={`/eventos/${event.event_id}`}
               className="event-link"
             >
               Ver detalles

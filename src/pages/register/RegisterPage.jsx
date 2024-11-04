@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { registerUser } from '../../services/userService'; // Servicio para registrar usuarios
+import { registerUser } from '../../services/authService'; // Servicio actualizado para registrar usuarios
 import { toast, Toaster } from 'react-hot-toast'; // Importa la librería de toasts
 import { useNavigate } from 'react-router-dom'; // Para redirigir al inicio de sesión
 import './registerPage.css';
@@ -22,9 +22,9 @@ export default function RegisterPage() {
       email,
       password,
       role,
-      telephone,
+      phone: telephone, // Cambiado a `phone` para coincidir con el backend
       address,
-      active: true,   // El campo `active` por defecto es `true`
+      is_active: true,   // Aseguramos que el usuario está activo por defecto
     };
 
     try {
