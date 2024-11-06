@@ -26,7 +26,7 @@ function CardEventos() {
           <div className="event-item" key={event.event_id || event.id_event}>
             <h3 className="event-item-title">{event.name}</h3>
             <img
-              src={event.image_url || '/fallback-image.jpg'} // Usa `image_url` o una imagen de respaldo
+              src={event.image_url || '/fallback-image.jpg'} 
               alt={`Evento ${event.name}`}
               className="event-item-image"
             />
@@ -35,13 +35,13 @@ function CardEventos() {
               <p className="event-item-location"><strong>Ubicación:</strong> {event.location}</p>
               <p><strong>Precio:</strong> ${event.price}</p>
             </div>
-            {/* Botón para ver los detalles del evento */}
+            {/* Botón para ver los detalles del evento
             <Link
               to={`/eventos/${event.event_id || event.id_event}`}
               className="event-item-link"
             >
               Ver detalles
-            </Link>
+            </Link> */}
           </div>
         ))}
       </div>
