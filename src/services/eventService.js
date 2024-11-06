@@ -1,10 +1,16 @@
 // services/eventService.js
 import api from './api';
+import Cookies from 'js-cookie';
+
+const getAuthHeader = () => {
+    const token = Cookies.get('token');
+    return token ? { Authorization: `Bearer ${token}` } : {};
+};
 
 export const createEvent = async (eventData) => {
     try {
         const response = await api.post('/events', eventData, {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+            headers: getAuthHeader(),
         });
         return response.data;
     } catch (error) {
@@ -14,7 +20,9 @@ export const createEvent = async (eventData) => {
 
 export const getAllEvents = async () => {
     try {
-        const response = await api.get('/events');
+        const response = await api.get('/events', {
+            headers: getAuthHeader(),
+        });
         return response.data;
     } catch (error) {
         throw new Error(error.response?.data?.message || 'Error fetching events');
@@ -23,7 +31,9 @@ export const getAllEvents = async () => {
 
 export const getEventById = async (eventId) => {
     try {
-        const response = await api.get(`/events/${eventId}`);
+        const response = await api.get(`/events/${eventId}`, {
+            headers: getAuthHeader(),
+        });
         return response.data;
     } catch (error) {
         throw new Error(error.response?.data?.message || 'Error fetching event');
@@ -33,7 +43,7 @@ export const getEventById = async (eventId) => {
 export const updateEvent = async (eventId, eventData) => {
     try {
         const response = await api.put(`/events/${eventId}`, eventData, {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+            headers: getAuthHeader(),
         });
         return response.data;
     } catch (error) {
@@ -44,7 +54,7 @@ export const updateEvent = async (eventId, eventData) => {
 export const deleteEvent = async (eventId) => {
     try {
         const response = await api.delete(`/events/${eventId}`, {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+            headers: getAuthHeader(),
         });
         return response.data;
     } catch (error) {
