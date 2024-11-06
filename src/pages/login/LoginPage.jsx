@@ -1,19 +1,48 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { loginUser } from '../../services/authService';
+import { useNavigate, Link } from 'react-router-dom';
+import { toast, Toaster } from 'react-hot-toast';
 import './loginPage.css';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState('cliente');
+  const [userType, setUserType] = useState('cliente'); // Estado para el tipo de usuario
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Iniciando sesión con:', email, password, userType);
+    const credentials = { email, password, role: userType }; // Incluye el rol en las credenciales
+
+    try {
+      const response = await loginUser(credentials);
+      
+      // Muestra un mensaje de éxito
+      toast.success('Inicio de sesión exitoso!', {
+        duration: 2000,
+        position: 'top-center',
+        iconTheme: {
+          primary: '#4CAF50',
+          secondary: '#fff',
+        },
+      });
+
+      // Redirige al usuario a la página de inicio u otra ruta después de iniciar sesión
+      setTimeout(() => {
+        navigate('/');
+      }, 2000);
+      
+    } catch (error) {
+      toast.error(error.message, {
+        duration: 4000,
+        position: 'top-center',
+      });
+    }
   };
 
   return (
     <div className="login-container">
+      <Toaster />
       <div className="login-card">
         <h2 className="login-title">Iniciar Sesión</h2>
         <form onSubmit={handleSubmit} className="login-form">
@@ -65,7 +94,6 @@ export default function LoginPage() {
             <button type="submit" className="login-button">Iniciar Sesión</button>
           </div>
           <div className="register-link-container">
-            {/* Asegúrate de que el enlace apunte a la ruta absoluta */}
             <p>¿No tienes una cuenta? <Link to="/registrarse" className="register-link">Regístrate aquí</Link></p>
           </div>
         </form>
