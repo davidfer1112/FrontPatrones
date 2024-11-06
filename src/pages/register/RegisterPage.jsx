@@ -120,11 +120,11 @@ export default function RegisterPage() {
               <input
                 type="radio"
                 name="userType"
-                value="host"
-                checked={role === 'host'}
-                onChange={() => setRole('host')}
+                value="admin"
+                checked={role === 'admin'}
+                onChange={() => setRole('admin')}
               />
-              Host
+              Admin
             </label>
             <label>
               <input

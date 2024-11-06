@@ -73,11 +73,11 @@ export default function LoginPage() {
               <input
                 type="radio"
                 name="userType"
-                value="host"
-                checked={userType === 'host'}
-                onChange={() => setUserType('host')}
+                value="admin"
+                checked={userType === 'admin'}
+                onChange={() => setUserType('admin')}
               />
-              Host
+              Admin
             </label>
             <label>
               <input
