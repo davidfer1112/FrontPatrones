@@ -31,8 +31,7 @@ function CardAlojamiento() {
               onError={(e) => { e.target.src = '/fallback-image.jpg'; }} // Imagen de respaldo si `image_url` falla
             />
             <p className="accommodation-item-location"><strong>Ubicación:</strong> {accommodation.location}</p>
-            <p className="accommodation-item-price"><strong>Precio:</strong> ${accommodation.price}</p>
-            <p className="accommodation-item-capacity"><strong>Capacidad:</strong> {accommodation.capacity} personas</p>
+            <p className="accommodation-item-contact"><strong>Contacto:</strong> {accommodation.contact}</p>
           </div>
         ))}
       </div>
