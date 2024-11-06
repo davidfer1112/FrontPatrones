@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import FooterComponent from '../../components/footer/footerComponent';
 import HeaderComponent from '../../components/header/headerComponent';
 import CardEventos from '../../components/cardevento/cardEventos';
@@ -35,7 +34,7 @@ function EventosPage() {
           {activeTab === 'eventos' ? (
             <section>
               <h2>Eventos</h2>
-                <CardEventos />
+              <CardEventos />
             </section>
           ) : (
             <section>
