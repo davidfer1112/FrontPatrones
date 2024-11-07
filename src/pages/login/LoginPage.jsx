@@ -3,7 +3,7 @@ import { loginUser } from '../../services/authService';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast';
 import Cookies from 'js-cookie'; // Importar js-cookie
-import './loginPage.css';
+import './LoginPage.css';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
