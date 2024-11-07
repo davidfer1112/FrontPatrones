@@ -35,13 +35,12 @@ function CardEventos() {
               <p className="event-item-location"><strong>Ubicación:</strong> {event.location}</p>
               <p><strong>Precio:</strong> ${event.price}</p>
             </div>
-            {/* Botón para ver los detalles del evento
             <Link
-              to={`/eventos/${event.event_id || event.id_event}`}
+              to={`/eventos/${event.event_id || event.id_event}?image=${encodeURIComponent(event.image_url || '/fallback-image.jpg')}`}
               className="event-item-link"
             >
               Ver detalles
-            </Link> */}
+            </Link>
           </div>
         ))}
       </div>
