@@ -1,0 +1,107 @@
+.estado-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    transition: background-color 0.5s ease;
+}
+
+.estado-toggle-button {
+    border: none;
+    position: relative;
+    width: 300px;
+    height: 150px;
+    padding: 0;
+    z-index: 2;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    background-color: #FFD700;
+    cursor: pointer;
+    padding: 10px;
+    overflow: hidden;
+    transition: background-color 0.5s ease;
+}
+
+.estado-toggle-button:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 1s ease;
+    z-index: 1;
+}
+
+.estado-toggle-button:hover:before {
+    width: 100%;
+}
+
+.estado-toggle-button:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 0px 0 0 0 white;
+    transition: box-shadow 2s ease;
+    z-index: 1;
+}
+
+.estado-toggle-button:hover:after {
+    box-shadow: 0px -13px 56px 12px rgba(255, 255, 255, 0.65);
+}
+
+.estado-toggle-button-text {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    left: 50%;
+    top: 50%;
+    letter-spacing: 3px;
+    transform: translate(-50%, -50%);
+    color: black;
+    transition: color 2s ease;
+    z-index: 2;
+}
+
+.estado-toggle-button:hover .estado-toggle-button-text {
+    color: white;
+}
+
+.toast {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 30px; 
+    border-radius: 12px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    animation: fadeInOut 3s ease forwards;
+}
+
+.toast img {
+    width: 300px; 
+    height: auto;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+    10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+    100% { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+}
+

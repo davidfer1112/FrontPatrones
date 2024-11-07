@@ -1,0 +1,102 @@
+/* Contenedor principal de la página de login */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+/* Tarjeta de login centrada */
+.login-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  max-width: 400px;
+  width: 100%;
+}
+
+/* Título de la página */
+.login-title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Agrupación de campos */
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+/* Estilos para etiquetas y entradas */
+.input-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.input-group input[type="email"],
+.input-group input[type="password"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  transition: border-color 0.2s;
+}
+
+.input-group input[type="email"]:focus,
+.input-group input[type="password"]:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Estilos para el grupo de tipo de usuario */
+.user-type {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-type label {
+  font-size: 1rem;
+  font-weight: normal;
+  color: #333;
+}
+
+.user-type input {
+  margin-right: 0.5rem;
+}
+
+/* Botón de inicio de sesión */
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #33ccff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.login-button:hover {
+  background-color: #2cabd6fc;
+}
+
+.register-link-container a{
+  text-decoration: none;
+  color: #33ccff;
+}
+
+.register-link-container a:hover{
+  text-decoration: none;
+  color: #2cabd6fc;
+}
