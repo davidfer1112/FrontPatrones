@@ -1,33 +1,80 @@
 .perfil-admin-container {
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.perfil-admin-container h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.perfil-admin-container .history-section {
+    margin-bottom: 25px;
+    background: linear-gradient(145deg, #e6e6e6, #ffffff);
     padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 0 -3px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
 }
 
-.history-section {
-    margin-bottom: 20px;
-    background-color: #f9f9f9;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.perfil-admin-container .history-section:hover {
+    transform: translateY(-5px);
 }
 
-.history-section h2 {
-    margin-bottom: 10px;
+.perfil-admin-container .history-section h2 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.5em;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 8px;
 }
 
-.history-item {
+.perfil-admin-container .history-item {
+    padding: 15px 0;
     border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.history-item:last-child {
+.perfil-admin-container .history-item:last-child {
     border-bottom: none;
 }
 
-.history-item p {
+.perfil-admin-container .history-item p {
     margin: 5px 0;
+    font-size: 1em;
+    color: #555;
 }
 
-.history-item strong {
-    color: #333;
+.perfil-admin-container .history-item strong {
+    color: #111;
 }
 
+.perfil-admin-container .history-item button {
+    background-color: #007BFF;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.perfil-admin-container .history-item button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.perfil-admin-container .history-item button span {
+    color: #fff;
+}

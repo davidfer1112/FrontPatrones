@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { getUserEventHistory, updateUserEventHistory } from '../../services/userEventHistoryService';
 import { getUserAccommodationHistory, updateUserAccommodationHistory } from '../../services/userAccommodationHistoryService';
+import { createAccessNotification } from '../../services/notificationService'; // Cambiamos el nombre para claridad
 import maskIcon from '../../assets/mask-icon.svg';
 import batmanSad from '../../assets/batmantriste.png';
 import batmanHappy from '../../assets/batmanfeliz.jpg'; 
@@ -22,15 +23,15 @@ export default function EstadoEventoAlojamientoPage() {
             try {
                 if (window.location.pathname.includes("evento")) {
                     setIsEvent(true);
-                    const eventHistory = await getUserEventHistory(id);
-                    if (eventHistory && eventHistory[0]) {
-                        setStatus(eventHistory[0].status);
+                    const eventHistory = await getUserEventHistory(historyId); // Obtener el estado específico del evento
+                    if (eventHistory && eventHistory.status) {
+                        setStatus(eventHistory.status);
                     }
                 } else {
                     setIsEvent(false);
-                    const accommodationHistory = await getUserAccommodationHistory(id);
-                    if (accommodationHistory && accommodationHistory[0]) {
-                        setStatus(accommodationHistory[0].status);
+                    const accommodationHistory = await getUserAccommodationHistory(historyId);
+                    if (accommodationHistory && accommodationHistory.status) {
+                        setStatus(accommodationHistory.status);
                     }
                 }
             } catch (error) {
@@ -39,11 +40,12 @@ export default function EstadoEventoAlojamientoPage() {
         };
 
         fetchStatus();
-    }, [id]);
+    }, [historyId]);
 
     const toggleStatus = async () => {
         try {
             const newStatus = status === 'active' ? 'inactive' : 'active';
+            const userId = Cookies.get('id');
 
             if (isEvent) {
                 await updateUserEventHistory(historyId, newStatus);
@@ -53,14 +55,24 @@ export default function EstadoEventoAlojamientoPage() {
 
             setStatus(newStatus);
 
+            // Enviar notificación al backend a través de la ruta /api/access
+            await createAccessNotification({
+                user_id: parseInt(userId), // Convertimos a número, si es necesario
+                event_id: isEvent ? parseInt(id) : null,
+                accommodation_id: isEvent ? null : parseInt(id),
+                type: isEvent ? 'event' : 'accommodation'
+            });
+
+            // Cambia la imagen del toast dependiendo del nuevo estado
             setToastImage(newStatus === 'inactive' ? batmanSad : batmanHappy);
             setShowToast(true);
 
+            // Oculta el toast después de 3 segundos
             setTimeout(() => {
                 setShowToast(false);
             }, 3000);
         } catch (error) {
-            console.error('Error updating status:', error);
+            console.error('Error updating status or sending notification:', error);
         }
     };
 

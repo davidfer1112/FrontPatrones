@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { loginUser } from '../../services/authService';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast, Toaster } from 'react-hot-toast';
+import Cookies from 'js-cookie'; // Importar js-cookie
 import './loginPage.css';
 
 export default function LoginPage() {
@@ -16,6 +17,9 @@ export default function LoginPage() {
 
     try {
       await loginUser(credentials);
+
+      // Guardar el correo en una cookie
+      Cookies.set('correo', email, { expires: 1 }); // La cookie expirará en 1 día
 
       // Mostrar mensaje de éxito
       toast.success('Inicio de sesión exitoso!', {

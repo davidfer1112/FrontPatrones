@@ -36,10 +36,10 @@ export default function PerfilAdminPage() {
 
     return (
         <div className="perfil-admin-container">
-            <h1>Perfil de Administrador</h1>
+            <h1>Mis Eventos y Alojamientos</h1>
             
             <div className="history-section">
-                <h2>Historial de Eventos</h2>
+                <h2>Eventos</h2>
                 <ul>
                     {eventHistory.map((entry) => (
                         <li key={entry.history_id} className="history-item">
@@ -54,7 +54,7 @@ export default function PerfilAdminPage() {
             </div>
             
             <div className="history-section">
-                <h2>Historial de Alojamientos</h2>
+                <h2>Alojamientos</h2>
                 <ul>
                     {accommodationHistory.map((entry) => (
                         <li key={entry.history_id} className="history-item">
