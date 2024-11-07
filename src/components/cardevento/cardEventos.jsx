@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllEvents } from '../../services/eventService';
 import { Link } from 'react-router-dom';  
-import './CardEventos.css';
+import './cardEventos.css';
 
 function CardEventos() {
   const [events, setEvents] = useState([]);

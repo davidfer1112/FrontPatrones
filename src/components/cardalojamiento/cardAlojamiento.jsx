@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getAllAccommodations } from '../../services/accommodationService';
-import './CardAlojamiento.css';
+import './cardAlojamiento.css';
 
 function CardAlojamiento() {
   const [accommodations, setAccommodations] = useState([]);

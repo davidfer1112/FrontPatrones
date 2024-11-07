@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { registerUser } from '../../services/authService'; // Servicio actualizado para registrar usuarios
 import { toast, Toaster } from 'react-hot-toast'; // Importa la librería de toasts
 import { useNavigate } from 'react-router-dom'; // Para redirigir al inicio de sesión
-import './registerPage.css';
+import './RegisterPage.css';
 
 export default function RegisterPage() {
   const [name, setName] = useState('');
