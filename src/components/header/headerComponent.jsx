@@ -16,6 +16,18 @@ function HeaderComponent() {
     }
   };
 
+  // Manejar el click en el ícono de usuario y redirigir según el rol
+  const handleUserIconClick = () => {
+    const role = Cookies.get('rol');
+    if (role === 'admin') {
+      navigate('/perfil-admin');
+    } else if (role === 'cliente') {
+      navigate('/perfil-cliente');
+    } else {
+      navigate('/iniciar-sesion'); // En caso de que el rol no esté definido o no esté autenticado
+    }
+  };
+
   return (
     <header className="header">
       <div className="header-container">
@@ -35,9 +47,9 @@ function HeaderComponent() {
         </div>
         <nav className="nav">
           {isAuthenticated ? (
-            <Link to="/perfil">
+            <button onClick={handleUserIconClick} className="user-icon-button">
               <img src={usericon} alt="Usuario" className="user-icon" />
-            </Link>
+            </button>
           ) : (
             <button className='btn'>
               <Link className="nav-link" to="/iniciar-sesion">Iniciar Sesión</Link>

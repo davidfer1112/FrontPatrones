@@ -7,17 +7,17 @@ import './loginPage.css';
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [userType, setUserType] = useState('cliente'); // Estado para el tipo de usuario
+  const [userType, setUserType] = useState('cliente');
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const credentials = { email, password, role: userType }; // Incluye el rol en las credenciales
+    const credentials = { email, password, role: userType };
 
     try {
-      const response = await loginUser(credentials);
-      
-      // Muestra un mensaje de éxito
+      await loginUser(credentials);
+
+      // Mostrar mensaje de éxito
       toast.success('Inicio de sesión exitoso!', {
         duration: 2000,
         position: 'top-center',
@@ -27,7 +27,7 @@ export default function LoginPage() {
         },
       });
 
-      // Redirige al usuario a la página de inicio u otra ruta después de iniciar sesión
+      // Redirigir después de iniciar sesión
       setTimeout(() => {
         navigate('/');
       }, 2000);

@@ -287,3 +287,15 @@
 .events-section{
   text-decoration: none;
 }
+
+.user-icon-button{
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.user-icon-button .user-icon{
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}

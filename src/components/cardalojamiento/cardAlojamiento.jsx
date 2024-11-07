@@ -32,6 +32,7 @@ function CardAlojamiento() {
             />
             <p className="accommodation-item-location"><strong>Ubicación:</strong> {accommodation.location}</p>
             <p className="accommodation-item-contact"><strong>Contacto:</strong> {accommodation.contact}</p>
+            <p className="accommodation-item-price"><strong>Precio:</strong> {accommodation.price}</p>
           </div>
         ))}
       </div>

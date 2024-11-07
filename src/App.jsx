@@ -4,6 +4,8 @@ import LoginPage from './pages/login/LoginPage';
 import RegisterPage from './pages/register/RegisterPage';
 import EventosPage from './pages/eventos/EventosPage';
 import EventDetailsPage from './pages/eventDetail/EventDetailPage';
+import PerfilAdminPage from './pages/perfilAdmin/PerfilAdminPage';
+import PerfilClientePage from './pages/perfilCliente/PerfilClientePage';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route path="/registrarse" element={<RegisterPage />} />
         <Route path="/eventos" element={<EventosPage />} />
         <Route path="/eventos/:id" element={<EventDetailsPage />} />
+        <Route path="/perfil-admin" element={<PerfilAdminPage />} />
+        <Route path="/perfil-cliente" element={<PerfilClientePage />} />
       </Routes>
     </>
   );
