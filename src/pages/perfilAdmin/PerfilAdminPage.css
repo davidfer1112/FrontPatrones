@@ -1,1 +1,33 @@
+.perfil-admin-container {
+    padding: 20px;
+}
+
+.history-section {
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.history-section h2 {
+    margin-bottom: 10px;
+}
+
+.history-item {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-item p {
+    margin: 5px 0;
+}
+
+.history-item strong {
+    color: #333;
+}
 
