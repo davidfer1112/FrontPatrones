@@ -27,3 +27,17 @@ export const createUserEventHistory = async (historyData) => {
         throw new Error(error.response?.data?.message || 'Error creating event history');
     }
 };
+
+
+// Actualizar el estado de una entrada en el historial de eventos
+export const updateUserEventHistory = async (historyId, status) => {
+    try {
+        const token = Cookies.get('token');
+        const response = await api.put(`/user-event-history/${historyId}`, { status }, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Error updating event history');
+    }
+};

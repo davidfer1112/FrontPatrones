@@ -45,7 +45,7 @@ export default function PerfilAdminPage() {
                         <li key={entry.history_id} className="history-item">
                             <p><strong>Evento ID:</strong> {entry.event_id}</p>
                             <p><strong>Estado:</strong> {entry.status}</p>
-                            <button onClick={() => navigate(`/estado-evento/${entry.event_id}`)}>
+                            <button onClick={() => navigate(`/estado-evento/${entry.event_id}?historyId=${entry.history_id}`)}>
                                 <span>{entry.status === 'active' ? 'Desactivar' : 'Activar'}</span>
                             </button>
                         </li>
@@ -60,7 +60,7 @@ export default function PerfilAdminPage() {
                         <li key={entry.history_id} className="history-item">
                             <p><strong>Alojamiento ID:</strong> {entry.accommodation_id}</p>
                             <p><strong>Estado:</strong> {entry.status}</p>
-                            <button onClick={() => navigate(`/estado-alojamiento/${entry.accommodation_id}`)}>
+                            <button onClick={() => navigate(`/estado-alojamiento/${entry.accommodation_id}?historyId=${entry.history_id}`)}>
                                 <span>{entry.status === 'active' ? 'Desactivar' : 'Activar'}</span>
                             </button>
                         </li>

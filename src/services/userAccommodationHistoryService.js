@@ -27,3 +27,17 @@ export const createUserAccommodationHistory = async (historyData) => {
         throw new Error(error.response?.data?.message || 'Error creating accommodation history');
     }
 };
+
+
+// Actualizar el estado de una entrada en el historial de alojamientos
+export const updateUserAccommodationHistory = async (historyId, status) => {
+    try {
+        const token = Cookies.get('token');
+        const response = await api.put(`/user-accommodation-history/${historyId}`, { status }, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error(error.response?.data?.message || 'Error updating accommodation history');
+    }
+};
