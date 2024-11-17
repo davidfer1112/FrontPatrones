@@ -1,80 +1,102 @@
 .perfil-admin-container {
-    padding: 30px;
-    max-width: 800px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
 }
 
-.perfil-admin-container h1 {
+.header {
     text-align: center;
-    color: #333;
-    font-size: 2em;
     margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
     font-weight: bold;
 }
 
-.perfil-admin-container .history-section {
-    margin-bottom: 25px;
-    background: linear-gradient(145deg, #e6e6e6, #ffffff);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1), 0 -3px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+.header p {
+    color: #666;
+    font-size: 1rem;
 }
 
-.perfil-admin-container .history-section:hover {
+.history-wrapper section {
+    margin-bottom: 40px;
+}
+
+.history-wrapper h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #222;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 10px;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
     transform: translateY(-5px);
 }
 
-.perfil-admin-container .history-section h2 {
-    margin-bottom: 15px;
-    color: #333;
-    font-size: 1.5em;
-    font-weight: bold;
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 8px;
-}
-
-.perfil-admin-container .history-item {
-    padding: 15px 0;
-    border-bottom: 1px solid #ddd;
+.card-content {
+    padding: 20px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.perfil-admin-container .history-item:last-child {
-    border-bottom: none;
+.card-content h3 {
+    font-size: 1.2rem;
+    color: #333;
 }
 
-.perfil-admin-container .history-item p {
-    margin: 5px 0;
-    font-size: 1em;
+.card-content p {
+    font-size: 1rem;
     color: #555;
 }
 
-.perfil-admin-container .history-item strong {
-    color: #111;
-}
-
-.perfil-admin-container .history-item button {
-    background-color: #007BFF;
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
+.card-content .status {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
     font-weight: bold;
-    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
-    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.perfil-admin-container .history-item button:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
+.status.active {
+    background: #e0f8e9;
+    color: #34a853;
 }
 
-.perfil-admin-container .history-item button span {
-    color: #fff;
+.status.inactive {
+    background: #ffe5e5;
+    color: #ea4335;
+}
+
+.card-content button {
+    padding: 10px 15px;
+    border: none;
+    background: #007bff;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card-content button:hover {
+    background: #0056b3;
 }

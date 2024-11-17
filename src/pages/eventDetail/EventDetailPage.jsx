@@ -71,8 +71,7 @@ function EventDetailsPage() {
       <p><strong>Ubicación:</strong> {event.location}</p>
       <p><strong>Descripción:</strong> {event.description}</p>
       <p><strong>Precio:</strong> ${event.price}</p>
-      <p><strong>Boletos vendidos:</strong> {event.buyed_tickets}/{event.total_tickets}</p>
-
+    
       <div className="button-container">
         <button className="primary-button" onClick={handlePurchase}>Comprar Entrada</button>
       </div>
