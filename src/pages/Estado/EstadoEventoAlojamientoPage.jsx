@@ -24,39 +24,45 @@ export default function EstadoEventoAlojamientoPage() {
             try {
                 console.log('History ID:', historyId);
 
-                if (historyId) {
-                    if (window.location.pathname.includes("evento")) {
-                        setIsEvent(true);
-                        const userId = Cookies.get('id'); // Fetch the userId from cookies
-                        const eventHistories = await getUserEventHistory(userId); // Get all event histories for the user
+                if (!historyId) {
+                    console.error('Missing historyId in query params');
+                    return;
+                }
 
-                        // Filter to find the specific history by historyId
-                        const eventHistory = eventHistories.find(history => history.history_id.toString() === historyId);
+                const userId = Cookies.get('id'); // Fetch the user ID from cookies
+                console.log('User ID:', userId);
 
-                        if (eventHistory && eventHistory.status) {
-                            setStatus(eventHistory.status);
-                        } else {
-                            console.error(`Event history not found for ID: ${historyId}`);
-                            setStatus('inactive'); // Default status if not found
-                        }
+                if (!userId) {
+                    console.error('User ID is missing from cookies');
+                    return;
+                }
+
+                if (window.location.pathname.includes("evento")) {
+                    setIsEvent(true);
+                    const eventHistories = await getUserEventHistory(userId); // Get all event histories for the user
+                    const eventHistory = eventHistories.find(history => history.history_id.toString() === historyId);
+
+                    if (eventHistory && eventHistory.status) {
+                        setStatus(eventHistory.status);
                     } else {
-                        setIsEvent(false);
-                        const accommodationHistories = await getUserAccommodationHistory(); // Modify this if specific user logic applies
-                        const accommodationHistory = accommodationHistories.find(history => history.history_id.toString() === historyId);
-
-                        if (accommodationHistory && accommodationHistory.status) {
-                            setStatus(accommodationHistory.status);
-                        } else {
-                            console.error(`Accommodation history not found for ID: ${historyId}`);
-                            setStatus('inactive'); // Default status if not found
-                        }
+                        console.error(`Event history not found for ID: ${historyId}`);
+                        setStatus('inactive');
                     }
                 } else {
-                    console.error('Missing historyId in query params');
+                    setIsEvent(false);
+                    const accommodationHistories = await getUserAccommodationHistory(userId); // Get all accommodation histories for the user
+                    const accommodationHistory = accommodationHistories.find(history => history.history_id.toString() === historyId);
+
+                    if (accommodationHistory && accommodationHistory.status) {
+                        setStatus(accommodationHistory.status);
+                    } else {
+                        console.error(`Accommodation history not found for ID: ${historyId}`);
+                        setStatus('inactive');
+                    }
                 }
             } catch (error) {
                 console.error('Error fetching status:', error);
-                setStatus('inactive'); // Default fallback status
+                setStatus('inactive');
             }
         };
 

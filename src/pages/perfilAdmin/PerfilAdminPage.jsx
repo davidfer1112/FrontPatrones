@@ -72,8 +72,9 @@ export default function PerfilAdminPage() {
     }, [userId]);
 
     return (
-        <div className="perfil-admin-container">
+        <div>
             <HeaderComponent />
+            <div className="perfil-admin-container">
             <div className="header">
                 <h1>Dashboard</h1>
                 <p>Manage your events and accommodations</p>
@@ -128,7 +129,11 @@ export default function PerfilAdminPage() {
                     </div>
                 </section>
             </div>
-            <FooterComponent />
+            
         </div>
+            
+        <FooterComponent />
+        </div>
+        
     );
 }

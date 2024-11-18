@@ -35,12 +35,12 @@ function CardComponent() {
             />
             <p className="card-date">Fecha: {new Date(event.date_time).toLocaleDateString()}</p>
             <p className="card-location">Ubicación: {event.location}</p>
-            <Link 
+            {/* <Link 
               to={`/eventos/${event.event_id}`}
               className="event-link"
             >
               Ver detalles
-            </Link>
+            </Link> */}
           </div>
         ))}
       </div>
