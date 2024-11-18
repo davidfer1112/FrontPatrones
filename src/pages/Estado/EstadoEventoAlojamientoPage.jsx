@@ -3,71 +3,93 @@ import { useParams, useSearchParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import { getUserEventHistory, updateUserEventHistory } from '../../services/userEventHistoryService';
 import { getUserAccommodationHistory, updateUserAccommodationHistory } from '../../services/userAccommodationHistoryService';
-import { createAccessNotification } from '../../services/notificationService'; // Cambiamos el nombre para claridad
+import { createAccessNotification } from '../../services/notificationService';
 import maskIcon from '../../assets/mask-icon.svg';
 import batmanSad from '../../assets/batmantriste.png';
 import batmanHappy from '../../assets/batmanfeliz.jpg'; 
 import './EstadoEventoAlojamientoPage.css';
 
 export default function EstadoEventoAlojamientoPage() {
-    const { id } = useParams();
-    const [status, setStatus] = useState(null);
-    const [isEvent, setIsEvent] = useState(true);
-    const [showToast, setShowToast] = useState(false);
-    const [toastImage, setToastImage] = useState(null);
+    const { id } = useParams(); // The ID of the event or accommodation
+    const [status, setStatus] = useState(null); // Tracks the current status (active/inactive)
+    const [isEvent, setIsEvent] = useState(true); // Determines if it's an event or accommodation
+    const [showToast, setShowToast] = useState(false); // Toast visibility
+    const [toastImage, setToastImage] = useState(null); // Toast image
     const [searchParams] = useSearchParams();
-    const historyId = searchParams.get('historyId'); // Obtener el historyId desde la URL
+    const historyId = searchParams.get('historyId'); // Get the history ID from URL params
 
+    // Fetch the status of the event or accommodation
     useEffect(() => {
         const fetchStatus = async () => {
             try {
-                if (window.location.pathname.includes("evento")) {
-                    setIsEvent(true);
-                    const eventHistory = await getUserEventHistory(historyId); // Obtener el estado específico del evento
-                    if (eventHistory && eventHistory.status) {
-                        setStatus(eventHistory.status);
+                console.log('History ID:', historyId);
+
+                if (historyId) {
+                    if (window.location.pathname.includes("evento")) {
+                        setIsEvent(true);
+                        const userId = Cookies.get('id'); // Fetch the userId from cookies
+                        const eventHistories = await getUserEventHistory(userId); // Get all event histories for the user
+
+                        // Filter to find the specific history by historyId
+                        const eventHistory = eventHistories.find(history => history.history_id.toString() === historyId);
+
+                        if (eventHistory && eventHistory.status) {
+                            setStatus(eventHistory.status);
+                        } else {
+                            console.error(`Event history not found for ID: ${historyId}`);
+                            setStatus('inactive'); // Default status if not found
+                        }
+                    } else {
+                        setIsEvent(false);
+                        const accommodationHistories = await getUserAccommodationHistory(); // Modify this if specific user logic applies
+                        const accommodationHistory = accommodationHistories.find(history => history.history_id.toString() === historyId);
+
+                        if (accommodationHistory && accommodationHistory.status) {
+                            setStatus(accommodationHistory.status);
+                        } else {
+                            console.error(`Accommodation history not found for ID: ${historyId}`);
+                            setStatus('inactive'); // Default status if not found
+                        }
                     }
                 } else {
-                    setIsEvent(false);
-                    const accommodationHistory = await getUserAccommodationHistory(historyId);
-                    if (accommodationHistory && accommodationHistory.status) {
-                        setStatus(accommodationHistory.status);
-                    }
+                    console.error('Missing historyId in query params');
                 }
             } catch (error) {
                 console.error('Error fetching status:', error);
+                setStatus('inactive'); // Default fallback status
             }
         };
 
         fetchStatus();
     }, [historyId]);
 
+    // Toggle the status (active/inactive)
     const toggleStatus = async () => {
         try {
             const newStatus = status === 'active' ? 'inactive' : 'active';
             const userId = Cookies.get('id');
 
             if (isEvent) {
-                await updateUserEventHistory(historyId, newStatus);
+                await updateUserEventHistory(historyId, newStatus); // Update event status
             } else {
-                await updateUserAccommodationHistory(historyId, newStatus);
+                await updateUserAccommodationHistory(historyId, newStatus); // Update accommodation status
             }
 
             setStatus(newStatus);
 
-            // Enviar notificación al backend a través de la ruta /api/access
+            // Send notification to the backend
             await createAccessNotification({
-                user_id: parseInt(userId), // Convertimos a número, si es necesario
+                user_id: parseInt(userId), // Parse user ID to integer
                 event_id: isEvent ? parseInt(id) : null,
                 accommodation_id: isEvent ? null : parseInt(id),
                 type: isEvent ? 'event' : 'accommodation'
             });
 
-            // Cambia la imagen del toast dependiendo del nuevo estado
+            // Update the toast image based on the new status
             setToastImage(newStatus === 'inactive' ? batmanSad : batmanHappy);
             setShowToast(true);
 
-            // Oculta el toast después de 3 segundos
+            // Hide the toast after 3 seconds
             setTimeout(() => {
                 setShowToast(false);
             }, 3000);
@@ -86,7 +108,11 @@ export default function EstadoEventoAlojamientoPage() {
                 </div>
             )}
             <h2>{isEvent ? 'Cambiar Estado del Evento' : 'Cambiar Estado del Alojamiento'}</h2>
-            <button className="estado-toggle-button" onClick={toggleStatus} style={{ WebkitMaskImage: `url(${maskIcon})`, maskImage: `url(${maskIcon})` }}>
+            <button 
+                className="estado-toggle-button" 
+                onClick={toggleStatus} 
+                style={{ WebkitMaskImage: `url(${maskIcon})`, maskImage: `url(${maskIcon})` }}
+            >
                 <span className="estado-toggle-button-text">{status === 'active' ? 'Desactivar' : 'Activar'}</span>
             </button>
         </div>
