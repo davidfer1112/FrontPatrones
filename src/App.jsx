@@ -7,6 +7,7 @@ import EventDetailsPage from './pages/eventDetail/EventDetailPage';
 import PerfilAdminPage from './pages/perfilAdmin/PerfilAdminPage';
 import PerfilClientePage from './pages/perfilCliente/PerfilClientePage';
 import EstadoEventoAlojamientoPage from './pages/Estado/EstadoEventoAlojamientoPage';
+import AlojamientoDetail from './pages/alojamientoDetail/AlojamientoDetail';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/perfil-cliente" element={<PerfilClientePage />} />
         <Route path="/estado-evento/:id" element={<EstadoEventoAlojamientoPage />} />
         <Route path="/estado-alojamiento/:id" element={<EstadoEventoAlojamientoPage />} />
+        <Route path="/alojamiento/:id" element={<AlojamientoDetail />} />
       </Routes>
     </>
   );

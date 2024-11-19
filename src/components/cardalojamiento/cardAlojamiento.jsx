@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Para redireccionar a la página de detalles
 import { getAllAccommodations } from '../../services/accommodationService';
 import './cardAlojamiento.css';
 
 function CardAlojamiento() {
   const [accommodations, setAccommodations] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAccommodations = async () => {
@@ -17,6 +19,10 @@ function CardAlojamiento() {
 
     fetchAccommodations();
   }, []);
+
+  const handleViewDetails = (id) => {
+    navigate(`/alojamiento/${id}`);
+  };
 
   return (
     <section className="accommodation-list-container">
@@ -33,6 +39,12 @@ function CardAlojamiento() {
             <p className="accommodation-item-location"><strong>Ubicación:</strong> {accommodation.location}</p>
             <p className="accommodation-item-contact"><strong>Contacto:</strong> {accommodation.contact}</p>
             <p className="accommodation-item-price"><strong>Precio:</strong> {accommodation.price}</p>
+            <button 
+              className="view-details-button" 
+              onClick={() => handleViewDetails(accommodation.accommodation_id)}
+            >
+              Ver detalles
+            </button>
           </div>
         ))}
       </div>
