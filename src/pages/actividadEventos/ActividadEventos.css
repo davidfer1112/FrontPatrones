@@ -1,0 +1,77 @@
+.actividad-eventos-container {
+    font-family: 'Arial', sans-serif;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+    color: #333;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #222;
+}
+
+.activities-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.activities-section section {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.activities-section h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #007bff;
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.activity-card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.activity-card:hover {
+    transform: translateY(-3px);
+}
+
+.activity-card p {
+    font-size: 1rem;
+    margin: 5px 0;
+    color: #555;
+}
+
+.activity-card.entrada {
+    border-left: 5px solid #34a853; /* Verde para entrada */
+    background-color: #e6f4ea;
+}
+
+.activity-card.salida {
+    border-left: 5px solid #ea4335; /* Rojo para salida */
+    background-color: #fdecea;
+}
+
+.activity-card strong {
+    color: #222;
+}

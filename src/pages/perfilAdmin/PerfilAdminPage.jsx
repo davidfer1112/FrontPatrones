@@ -75,10 +75,16 @@ export default function PerfilAdminPage() {
         <div>
             <HeaderComponent />
             <div className="perfil-admin-container">
-            <div className="header">
-                <h1>Dashboard</h1>
-                <p>Manage your events and accommodations</p>
-            </div>
+                <div className="header">
+                    <h1>Dashboard</h1>
+                    <button
+                        className="realtime-activity-btn"
+                        onClick={() => navigate('/actividad-eventos')}
+                    >
+                        Ver Actividad en Tiempo Real
+                    </button>
+                    <p>Manage your events and accommodations</p>
+                </div>
 
             <div className="history-wrapper">
                 <section>
